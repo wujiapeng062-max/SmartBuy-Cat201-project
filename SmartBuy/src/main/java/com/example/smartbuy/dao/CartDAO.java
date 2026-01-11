@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 购物车数据访问对象
+ * Shopping Cart Data Access Object
  */
 public class CartDAO {
     
     /**
-     * 获取用户购物车中的所有商品
+     * Get all items in the user's shopping cart
      */
     public List<CartItem> getCartItems(int userId) throws SQLException {
         String sql = "SELECT c.*, p.product_name, p.brand, p.price, p.image_url " +
@@ -46,7 +46,7 @@ public class CartDAO {
     }
     
     /**
-     * 添加商品到购物车
+     *Add item to cart
      */
     public boolean addToCart(int userId, int productId, int quantity) throws SQLException {
         String sql = "INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?) " +
@@ -65,7 +65,7 @@ public class CartDAO {
     }
     
     /**
-     * 更新购物车商品数量
+     * Update shopping cart item quantity
      */
     public boolean updateCartItemQuantity(int cartId, int quantity) throws SQLException {
         String sql = "UPDATE cart SET quantity = ? WHERE cart_id = ?";
@@ -81,7 +81,7 @@ public class CartDAO {
     }
     
     /**
-     * 从购物车删除商品
+     * Remove item from cart
      */
     public boolean removeFromCart(int cartId) throws SQLException {
         String sql = "DELETE FROM cart WHERE cart_id = ?";
@@ -95,7 +95,7 @@ public class CartDAO {
     }
     
     /**
-     * 清空用户购物车
+     * Clear user shopping cart
      */
     public boolean clearCart(int userId) throws SQLException {
         String sql = "DELETE FROM cart WHERE user_id = ?";
@@ -109,7 +109,7 @@ public class CartDAO {
     }
     
     /**
-     * 获取购物车商品总数
+     * Get total number of items in the shopping cart
      */
     public int getCartItemCount(int userId) throws SQLException {
         String sql = "SELECT SUM(quantity) FROM cart WHERE user_id = ?";
